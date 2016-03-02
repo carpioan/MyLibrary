@@ -1,0 +1,53 @@
+{% extends 'mylib/base.html' %}
+
+{% block content %}
+<!--    <h5>New book</h5>
+    <form type="text" autocomplete="on" action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form> -->
+
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div>
+        <div {% if form.book_title.errors %}class="field_error"{% endif %}>
+             <br><br>
+            <h6>Author</h6>
+            {% for key, value in form.authors.field.choices %}
+                <div class="input-field col s6">
+                    <select multiple>
+                        <input type="checkbox" id="{{value}}" value="{{key}}" name="authors">
+                            <label for="{{value}}">
+                                {{ value }}
+                            </label>
+                    </select>
+                </div>
+            {% endfor %}
+             <br><br>
+            <h6>Book Title</h6>
+            {{ form.book_title }}
+            {{ form.book_title.errors }}
+            <h6>Book edition</h6>
+            {{ form.book_edition }}
+            <h6>Book theme</h6>
+            {{ form.book_theme }}
+            <h6>Publishing Press</h6>
+            {% for key, value in form.publishing_presses.field.choices %}
+                <div class="input-field col s6">
+                    <select multiple>
+                        <input type="checkbox" id="{{value}}" value="{{key}}" name="publishing_presses">
+                            <label for="{{value}}">
+                                {{ value }}
+                            </label>
+                    </select>
+                </div>
+            {% endfor %}
+             <br><br>
+            <h6>Publishing Year</h6>
+            {{ form.publishing_year }}
+            <h6>Registered date</h6>
+            {{ form.registered_date }}
+
+        <p></div>
+         <input type="submit" value="Save">
+      </div></p>
+{% endblock %}

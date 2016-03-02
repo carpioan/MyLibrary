@@ -1,0 +1,31 @@
+{% extends 'mylib/base.html' %}
+
+{% block content %}
+<div>
+<table class="highlight">
+    <thead>
+        <tr>
+             <th data-field="author">Author</th>
+             <th data-field="book">Title</th>
+             <th data-field="publishing_year">Year</th>
+             <th data-field="book_theme">Theme</th>
+         </tr>
+    </thead>
+    <tbody class="">
+    {% for book in books %}
+        {% for author in authors %}
+            {% if author == book.authors.get %}
+        <tr>
+            <td>{{author}}</td>
+            <td><a href="{% url 'book_detail' pk=book.pk %}">{{book}}</a></td>
+            <td>{{book.publishing_year}}</td>
+            <td>{{book.book_theme}}</td>
+        </tr>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

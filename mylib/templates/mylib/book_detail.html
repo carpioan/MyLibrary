@@ -1,0 +1,35 @@
+{% extends 'mylib/base.html' %}
+
+{% block content %}
+                    {% if details.book_title %}
+                            {% for author in authors %}
+                                {% if author == details.authors.get %}
+                                    {% for pubpress in pubpresses %}
+                                        {% if pubpress == details.publishing_presses.get %}
+ <div class="row">
+        <div class="col s12 m10">
+          <div class="card">
+            <div class="card-image">
+              <img src="http://i.huffpost.com/gen/1519136/images/o-PILE-OF-BOOKS-facebook.jpg">
+            </div>
+            <div class="card-content">
+                <span class="card-title"><h5>{{details.book_title}}</h5></span>
+                <span class="card-title"><h4>{{author}}</h4></span>
+                <p>Publishing Press: <span>{{ pubpress }}</span></p>
+                <p>Edition: <span>{{ details.book_edition }}</span></p>
+                <p>Year: <span>{{ details.publishing_year }}</span></p>
+                <p>Theme: <span>{{ details.book_theme }}</span></p>
+                <p>Registered: <span>{{ details.registered_date }}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                    {% endif %}
+{% endblock %}
+
+
